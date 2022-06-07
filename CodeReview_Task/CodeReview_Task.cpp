@@ -28,6 +28,12 @@ int main() {
     cities.push_back("Kyiv", "North");
     cities.push_back("Lutsk", "West");
     std::cout << "Cities[West]: " << cities["West"] << std::endl;
+    try {
+        std::cout << "Cities[-1]: " << cities[-1].first << std::endl;
+    }
+    catch (const std::exception& ex) {
+        std::cout << "Cities[-1]: " << ex.what() << std::endl;
+    }
     std::cout << std::endl;
 
     MyVector<std::string> cities2 = cities;

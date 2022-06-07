@@ -59,20 +59,24 @@ public:
     }
     void push_back(const_reference obj, const_name_reference name) {
         copy_names();
-
         m_vector->push_back(std::pair<value_type, name_type>(obj, name));
     }
     std::pair<reference, name_reference> operator[](size_type index) {
         copy_names();
-        return const_cast<std::pair<reference, name_reference>>(static_cast<const MyVector<value_type>&>(*this)[index]);
-    }
-    std::pair<const_reference, const_name_reference> operator[](size_type index) const {
-        if (index >= m_vector->size())
+        if (index < 0 || index >= m_vector->size())
         {
             throw std::out_of_range("Index is out of range");
         }
 
-        return std::pair<const_reference, const_name_reference>(*m_vector[index]);
+        return std::pair<reference, name_reference>((*m_vector)[index].first, (*m_vector)[index].second);
+    }
+    std::pair<const_reference, const_name_reference> operator[](size_type index) const {
+        if (index < 0 || index >= m_vector->size())
+        {
+            throw std::out_of_range("Index is out of range");
+        }
+
+        return std::pair<const_reference, const_name_reference>((*m_vector)[index].first, (*m_vector)[index].second);
     }
     reference operator[](const_name_reference name) {
         copy_names();
