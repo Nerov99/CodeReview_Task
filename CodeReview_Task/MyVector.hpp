@@ -26,7 +26,7 @@ private:
         if (m_vector.unique())
             return;
 
-        m_vector = std::make_shared<std::vector<vector_type>>(*(m_vector.get()));
+        m_vector = std::make_shared<std::vector<vector_type>>(*m_vector);
     }
 public:
     MyVector() : m_vector{ std::make_shared<std::vector<vector_type>>(std::vector<vector_type>()) } {}
