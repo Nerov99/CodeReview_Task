@@ -36,7 +36,7 @@ int main() {
     try {
         std::cout << "Cities[East]: " << cities["East"] << std::endl;
     }
-    catch (const std::invalid_argument ex) {
+    catch (const std::exception ex) {
         std::cout << "Cities[East]: " << ex.what() << std::endl;
     }
     std::cout << std::endl;
